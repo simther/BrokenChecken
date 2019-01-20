@@ -45,6 +45,11 @@ def main():
     """
     url = input("Enter the ROOT domain you want to check. (Format: http:// or https://)\n> ")
     links = get_links(url)
+    for link in links:
+        site_links = get_links(link)
+        for l in site_links:
+            if l not in links:
+                links.append(l)
     broken_links = check_links(links)
     if len(broken_links) > 0:
         for link in broken_links:
